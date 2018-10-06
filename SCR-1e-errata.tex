@@ -1,0 +1,293 @@
+\documentclass{article}
+
+\title{Errata and Notes for  \\
+\emph{\sc{Statistical Computing with R}}\\
+First Edition\\
+Chapman \& Hall/CRC (2008)}
+\author{Maria L. Rizzo}
+\date{28 October 2017}  
+
+\usepackage{amsmath}
+
+% Set up the images/graphics package
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+\begin{document}
+
+\maketitle% 
+
+\begin{abstract}
+\noindent This document contains errata, notes, and some programming notes
+for the first edition (2008) of "Statistical Computing with R", ISBN 978-1-58488-545-0
+(Hardcover). 
+\end{abstract}
+
+
+\section{Errata}
+
+\begin{enumerate}
+\item[p. 11] \emph{Section 1.6, Data Frames.} 
+For R versions $>=$ 3.0.0, \texttt{mean} for data frames is defunct.
+Change the function \texttt{mean} to \texttt{colMeans}:
+\begin{verbatim}
+by(iris[,1:4], iris$Species, colMeans)
+\end{verbatim}
+
+\item[p. 30]Last line:\emph{Section 2.3, Chisquare and $t$.} 
+$x \geq 0, \nu=1,2,\dots$.
+
+
+\item[p. 35]\emph{Section 2.5.} In the first two displayed equations: $\lim\limits_{n
+\to \infty}$.
+
+
+\item[p. 58] Item 4. \emph{Section 3.4}.
+\begin{align*}
+Z_1 &= \sqrt{-2 \log U} \cos(2 \pi V),\\
+Z_2 &= \sqrt{-2 \log U} \sin(2 \pi V)
+\end{align*}
+
+%% Example 4.10
+%% lattice::parallel is deprecated
+%% use parallelplot instead
+
+\item[p. 114]Example 4.11 \emph{Section 4.5.3}, code for segment plot in Figure 4.10. 
+In \texttt{stars}, the labels argument must be a vector of character strings: use \texttt{levels} of the factor for labels.
+\begin{verbatim}
+stars(x[4:8], draw.segments = TRUE,
+  labels = levels(x$sp), nrow = 4,
+  ylim = c(-2,10), key.loc = c(3,-1))
+\end{verbatim}
+
+\item[p. 121] \emph{Section 5.2.1}, Example 5.2.
+In step 2: $\overline{g(X)}=\frac 1m \sum_{i=1}^m g(X_i)$.
+
+\item[p. 132]\emph{Section 5.5.} 
+In sentence above (5.9): $\hat \theta_c=g(X)+c(f(X)-\mu)$.
+
+\item[p. 142]\emph{Section 5.6}, Example 5.10. \\
+The standard errors will be the vector
+\verb|se/sqrt{m}\verb|, so
+the summary is:
+\begin{Verbatim}[fontsize=\small]
+> rbind(theta.hat, se/sqrt(m))
+                 [,1]        [,2]      [,3]         [,4]        [,5]
+theta.hat 0.524114007 0.531358351 0.5461507 0.5250698759 0.526049238
+          0.002436559 0.004181264 0.0096613 0.0009658794 0.001427685
+\end{Verbatim}
+
+\item[p. 143]In \emph{Section 5.6} ``Variance in Importance Sampling'',
+in the equation for $Var(\hat \theta)$, $ds$ should be $dx$ in the integral.
+
+
+
+\item[p. 158]Table 6.1 \emph{Section 6.2.2}. The right two columns
+reporting $n \, \widehat{se}$
+are not correct. To obtain results for $n \, \widehat{MSE}$ in Table 6.1,
+\texttt{set.seed(522)}. The corrected table is given below. \medskip
+
+
+
+\begin{tabular}{rrrrrrr}
+  \hline
+&  \multicolumn{2}{c}{Normal} & \multicolumn{2}{c}{$p=0.95$} &
+   \multicolumn{2}{c}{$p=0.90$} \\
+   \hline
+k & $n\, \widehat{MSE}$  & $n\, \widehat{se}$ & $n\, \widehat{MSE}$
+&  $n\, \widehat{se}$ & $n\,
+\widehat{MSE}$ &  $n\, \widehat{se}$ $\vphantom{{\sum\limits^M}}$\\
+  \hline
+  1 & 0.976 & 0.140 & 6.229 & 0.353 & 11.485 & 0.479 \\
+  2 & 1.019 & 0.143 & 1.954 & 0.198 & 4.126 & 0.287 \\
+  3 & 1.009 & 0.142 & 1.304 & 0.161 & 1.956 & 0.198 \\
+  4 & 1.081 & 0.147 & 1.168 & 0.153 & 1.578 & 0.178 \\
+  5 & 1.048 & 0.145 & 1.280 & 0.160 & 1.453 & 0.170 \\
+  6 & 1.103 & 0.149 & 1.395 & 0.167 & 1.423 & 0.169 \\
+  7 & 1.316 & 0.162 & 1.349 & 0.164 & 1.574 & 0.177 \\
+  8 & 1.377 & 0.166 & 1.503 & 0.173 & 1.734 & 0.186 \\
+  9 & 1.382 & 0.166 & 1.525 & 0.175 & 1.694 & 0.184 \\
+  10 & 1.491 & 0.172 & 1.646 & 0.181 & 1.843 & 0.192 \\
+   \hline
+\end{tabular}
+\bigskip
+
+
+ \item[p. 187]Line 1. \emph{Section 7.1.1}, Example 7.2, paragraph following the code.
+ Remove hat from the first `se'.
+
+\item[p. 200]Example 7.10. \emph{Section 7.4.3}, above R note 7.3.
+
+Misplaced right paren.; correction:
+\begin{verbatim}
+    #normal
+    print(boot.obj$t0 + qnorm(alpha) * sd(boot.obj$t))
+\end{verbatim}
+
+\item[p. 204]\emph{Section 7.5}. 
+$$
+ \hat a = \frac{\sum_{i=1}^n (\overline{ \theta_{(.)}} -
+ \theta_{(i)})^3}
+ {6 \left(\sum_{i=1}^n (\overline{\theta_{(.)}} -
+ \theta_{(i)})^2\right)^{3/2}},
+ \eqno(7.11)
+$$
+
+\item[p. 240]Example 8.13 (Distance covariance test): In the function \texttt{ndCov2}, line 3 should be
+\begin{verbatim}
+    q1 <- p + 1
+\end{verbatim}
+
+\item[p. 246]First paragraph, in second sentence, \emph{Section 9.1.2}.
+``$n$ tends to infinity'' should be ``$m$ tends to infinity''.
+
+ \item[p. 260]\emph{Section 9.2.4}, Example 9.6. 
+ Last paragraph: delete the second sentence ``Then an observed sample is generated.''
+
+
+\item[p. 263]Example 9.7. \emph{Section 9.3}.
+$$
+  E[X_2|x_1] = \mu_2 + \rho\frac{\sigma_2}{\sigma_1}(x_1-\mu_1)
+$$
+
+\item[p. 283]\emph{Section 10.1.1}. 
+Sturges's Rule: ``For large $k$ (large $n$) the distribution
+of Binomial($n, 1/2)$ is \dots''
+
+\item[p. 287]\emph{Section 10.1.1}; Scott's Normal Reference Rule. 
+In equation (10.3) for $h_n^*$: replace $n$ with $n^{-1}$. See
+Scott [241] equation (3.15).
+
+
+\item[p. 312]Example 10.15. \emph{Section10.3.3}. 
+The mean vectors used to generate the samples in the code
+and in the plots in Figure 10.13 are
+$$
+ \mu_1= \left[
+         \begin{array}{c}
+           0 \\
+           0 \\
+         \end{array}
+       \right], \quad
+ \mu_2= \left[
+         \begin{array}{c}
+           1 \\
+           3 \\
+         \end{array}
+       \right], \quad
+ \mu_3= \left[
+         \begin{array}{c}
+           4 \\
+           -1 \\
+         \end{array}
+       \right].
+ $$
+
+
+ \item[p. 315]Exercise 10.5. The skewness adjustment factor is
+ given in (10.8).
+
+\end{enumerate}
+
+\section{Notes}
+
+
+
+\begin{enumerate}
+
+ \item[p. 56] \emph{Section 3.3}.  Remark on Example 3.7. Although 6 is an upper bound, it
+ is not the least upper bound. The generator is more efficient if
+ $c=1.5$, the maximum value of $f(x)/g(x)$ for $0 \leq x \leq 1$.
+
+
+ \item[p. 57] \emph{Section 3.3, Example 3.7}, code above para. 2:\\
+  \texttt{\#See Ch. 2} 
+ 
+
+ \item[p. 71--72]Example 3.16, summary statistics. \emph{Section 3.6.1}.
+ The \texttt{rmvn.eigen} generator takes the
+ covariance matrix \texttt{Sigma} as an argument, so in general one may
+ want to display \texttt{cov(X)} for comparison with \texttt{Sigma} rather than the sample
+ correlation matrix \texttt{cor(X)}. (Here our \texttt{Sigma}
+ was a correlation matrix.)
+
+
+
+ \item[p. 178--179]Examples 6.14--6.15.  \emph{Section 6.4}. 
+ Although mathematically it is not
+ an error, it is unnecessary to subtract the sample means in the
+ expression \texttt{tests} of Example 6.14 because the sample
+ means are subtracted in the function \texttt{count5test}.
+ Mathematically, if $Z_i=X_i-\overline X$, then $\overline Z=0$.
+ The same is true in the expression for \texttt{alphahat} in
+ Example 6.15. The \texttt{count5test} can be
+ applied without centering the data first, as in Example 6.16.
+
+
+\item[p. 225--228]Examples 8.4-8.6.  \emph{Section 8.3, Nearest Neighbor Tests}.  
+    The \texttt{knnFinder} package with \texttt{nn} function for finding nearest neighbors has been withdrawn from CRAN. These examples have been revised using the \texttt{ann} function in the \texttt{yaImpute} package.
+
+
+\item[p. 323-324]Example 11.3.  \emph{Section 11.1, Evaluating Functions}.
+In \texttt{system.time} the timings are hardware dependent; however, the vectorized version should be faster on all platforms.
+
+
+ \item[pp. 338--339]Example 11.11.  \emph{Section 11.5}.
+ The first code snippet will produce a graph similar to Figure 11.3 but with $x$-axis ranging from about 2 to 8. To produce Figure 11.3 as shown, replace 8 with 15 in \texttt{seq(2, 8, .001)}.
+
+\item[p. 341]Example 11.12.  \emph{Section 11.5}.
+The histograms will of course vary slightly from Figure 11.4 because the data is generated at random. According to my notes, \texttt{set.seed(333)} before the first line of code should produce samples matching the histograms as shown on page 341. See the note below concerning \texttt{par(ask=TRUE)} to wait for user input before displaying each graph.
+
+
+\item[p. 342--343]Example 11.13.  \emph{Section 11.6}.\\
+\texttt{set.seed(333)} was set prior to run.
+
+
+\end{enumerate}
+
+
+\section{Programming Notes}
+
+\begin{enumerate}
+ \item \texttt{curve} is convenient for plotting a function. It can replace \texttt{lines} in some examples; e.g. in Example 3.2 to add the density curve to the histogram, instead of \texttt{lines}
+     we can use:
+
+     \verb|curve(3*x^2, add=TRUE)|
+
+ \item Displaying a sequence of graphs: \texttt{par(ask=TRUE)} has the effect that the user is asked for input before each new figure is drawn. Follow it with \texttt{par(ask=FALSE)} to restore to default behavior.
+
+\item \texttt{sapply} can be used instead of \texttt{apply} in some examples, which eliminates the need for MARGIN and the need for
+    the argument to have a dimension attribute.
+    See e.g. Example 5.4 on page 123. The lines:
+
+\begin{verbatim}
+  dim(x) <- length(x)
+  p <- apply(x, MARGIN=1, function(x, z) {mean(z < x)}, z=z)
+\end{verbatim}
+    can be replaced with either version below:
+\begin{verbatim}
+  p <- sapply(x, FUN=function(x,z) mean(z<x), z=z)
+  p <- sapply(x, function(x) mean(z<x))
+\end{verbatim}
+
+\item A more elegant approach to the comparison of generators in Example 3.19
+is to wrap the repeated statements in a function that takes the
+name of the generator (e.g. rmvn.eigen) as an argument. An example
+of a function that has a functional argument is \texttt{boot}; see
+Example 7.10 for a typical example.
+
+\end{enumerate}
+
+\paragraph{Acknowledgements}
+
+Thanks to several readers who sent comments, corrections, and suggestions.
+
+
+
+\end{document}
