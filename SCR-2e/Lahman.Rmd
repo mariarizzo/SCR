@@ -1,0 +1,67 @@
+---
+title: "Benchmarks on Lahman Batting data"
+author: "Maria Rizzo"
+date: "September 1, 2018"
+output: html_document
+---
+
+```{r}
+library(Lahman)
+library(dplyr)
+library(ggplot2)
+library(microbenchmark)
+```
+
+## Define two functions to compare the two methods
+
+```{r}
+use_dplyr <- function(yr) {
+  Batting %>% filter(yearID == yr) -> b
+  b %>% group_by(playerID) %>% 
+    summarize(AB = sum(AB), H = sum(H)) -> S
+  S %>% mutate(AVG = round(H / AB, 3)) -> S
+  S %>% filter(AB >= 400) -> S400
+  S400 %>% arrange(desc(AVG)) -> S400
+  slice(S400, 1:10) -> top
+  top
+}
+
+no_dplyr <- function(yr) {
+  S <- subset(Batting, Batting$yearID == yr, 
+             select = c("playerID", "AB", "H"))
+  AB <- as.vector(by(S$AB, S$playerID, FUN = sum))
+  H <- as.vector(by(S$H, S$playerID, FUN = sum))
+  S <- data.frame(playerID = unique(S$playerID), 
+                  AB = AB, H = H, AVG = round(H / AB, 3),
+                  stringsAsFactors = FALSE)
+  S400 <- S[S$AB >= 400, ]
+  o <- order(S400$AVG, decreasing = TRUE)
+  S400 <- S400[o, ]
+  top <- S400[1:10, ]
+  top
+}
+```
+
+Check that these functions obtain the same results.
+
+```{r}
+all.equal(use_dplyr(1999), no_dplyr(1999))
+```
+
+## Benchmark comparison for dplyr method vs basic method
+
+```{r}
+mb <- microbenchmark(
+  dplyr = use_dplyr(1999),
+  base = no_dplyr(1999)
+)
+
+mb
+autoplot(mb)
+```
+
+Another version of the summary table:
+
+```{r}
+knitr::kable(summary(mb))
+```
