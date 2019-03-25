@@ -122,6 +122,17 @@
 ### Example 4.7 (Brownian motion)
     
     
+    simBM <- function(n, T) {
+      times <- seq(0, T, length = n+1)
+      z <- rnorm(n)
+      w <- rep(0, n)
+      s <- sqrt(diff(times))
+      for (k in 2:n) {
+        w[k] <- w[k-1] + s[k] * z[k]
+      }
+      return (list(w=w, t=times))
+    }
+    
     set.seed(1)
     n <- 200
     x1 <- simBM(n, 1)
@@ -139,7 +150,7 @@
       return (w[k1] + b * (w[k] - w[k1]))
     }
     
-    plot(x1$t[0:10], x1$w[0:10], type="b", main="", xlab="t", ylab="W")
+    plot(x1$t[1:10], x1$w[1:10], type="b", main="", xlab="t", ylab="W")
     tmids <- x1$t + 0.0025
     for (i in 1:10) {
       w <- interpBM(x1$w, tmids[i], x1$t)

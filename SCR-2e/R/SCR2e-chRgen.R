@@ -192,8 +192,8 @@ k <- as.integer(u > 0.5)  #vector of 0's and 1's
 x <- k * x1 + (1-k) * x2  #the mixture
 
 par(mfcol=c(1,2))         #two graphs per page
-hist(s, prob=TRUE)
-hist(x, prob=TRUE)
+hist(s, prob=TRUE, xlim=c(0,5), ylim=c(0,1))
+hist(x, prob=TRUE, xlim=c(0,5), ylim=c(0,1))
 par(mfcol=c(1,1))         #restore display
 
 
@@ -370,7 +370,7 @@ detach(package:mvtnorm)
 ### Example 3.20 (Multivariate normal mixture)
 
 library(MASS)  #for mvrnorm
-#ineffecient version loc.mix.0 with loops
+#inefficient version loc.mix.0 with loops
 
 loc.mix.0 <- function(n, p, mu1, mu2, Sigma) {
   #generate sample from BVN location mixture

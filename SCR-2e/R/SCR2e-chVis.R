@@ -40,7 +40,7 @@
     #for all 3 at once, in color, plot 2
     splom(iris[,1:4], groups = iris$Species)
 
-    # Fig. 4.2
+    # Fig. 5.2
     #for all 3 at once, black and white, plot 3
     splom(~iris[1:4], groups = Species, data = iris,
         col = 1, pch = c(1, 2, 3),  cex = c(.5,.5,.5))
