@@ -3,7 +3,7 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       January 2019                              ###
+###       March 6, 2019                             ###
 ###                                                 ###
 ###       R code for Chapter 4                      ###
 ###       Generating Random Processes               ###
