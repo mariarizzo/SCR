@@ -9,7 +9,7 @@
     ###       Bootstrap and Jackknife                   ###
     #######################################################
 
-    
+
 # packages to install: bootstrap, DAAG
 
     

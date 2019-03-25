@@ -9,7 +9,6 @@
 ###  Monte Carlo Integration and Variance Reduction ###
 #######################################################
 
-
 ### Example 6.1 (Simple Monte Carlo integration)
 
     m <- 10000

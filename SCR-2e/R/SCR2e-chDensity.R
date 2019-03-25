@@ -9,6 +9,7 @@
 ###       Permutation Tests                         ###
 #######################################################
 
+
 # packages to install: ash, ggplot2 
 
 ### Example 12.1 (Histogram density estimates using Sturges' Rule)

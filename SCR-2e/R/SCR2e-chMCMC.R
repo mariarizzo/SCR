@@ -10,7 +10,6 @@
 #######################################################
 
 
-    
 ### Example 11.1 (Metropolis-Hastings sampler)
 
     f <- function(x, sigma) {

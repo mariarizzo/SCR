@@ -9,6 +9,7 @@
 ###       Monte Carlo Methods in Inference          ###
 #######################################################
 
+
 # packages to install: energy, ggplot2
 
 ### Example 7.1 (Basic Monte Carlo estimation)
