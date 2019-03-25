@@ -3,14 +3,13 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       January 2019                              ###
+###       March 6, 2019                             ###
 ###                                                 ###
 ###       R code for Chapter 11                     ###
 ###       Markov Chain Monte Carlo                  ###
 #######################################################
 
 
-    
 ### Example 11.1 (Metropolis-Hastings sampler)
 
     f <- function(x, sigma) {
