@@ -3,12 +3,11 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       March 6, 2019                             ###
+###       January 2019                              ###
 ###                                                 ###
 ###       R code for Chapter 10                     ###
 ###       Permutation Tests                         ###
 #######################################################
-
 
 # packages to install: ash, ggplot2 
 
@@ -105,7 +104,7 @@
     print(integrate(fpoly, lower=min(vx), upper=max(vx)))
     
     library(ggplot2)
-    ggplot(geyser, aes(waiting)) + geom_frepoly(binsize=h)
+    ggplot(geyser, aes(waiting)) + geom_freqpoly(binsize=h)
     
 ### Example 12.6 (ASH density estimate)
 
