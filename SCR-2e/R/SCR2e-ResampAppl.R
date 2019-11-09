@@ -3,7 +3,7 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       March 6, 2019                             ###
+###       January 2019                              ###
 ###                                                 ###
 ###       R code for Chapter 9                      ###
 ###       Resampling Applications                   ###
@@ -235,12 +235,14 @@ broom::tidy(boot.obj)
 ### Example 9.10 (Empirical influence values for the patch ratio statistic)
 
 library(boot)
+library(bootstrap)
 theta_boot <- function(dat, ind) {
   # function to compute the patch ratio statistic
   mean(dat[ind, ]$y) / mean(dat[ind, ]$z)
 }
 boot.out <- boot(patch, theta_boot, R = 2000)
 infl <- empinf(boot.out, type = "jack")
+theta.hat <- boot.out$t0
 jack <- theta.hat - infl / (nrow(patch) - 1)
 rbind(infl, jack)
 
