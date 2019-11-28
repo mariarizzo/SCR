@@ -250,10 +250,10 @@ rbind(infl, jack)
 
 jack.after.boot(boot.out, useJ=TRUE, stinf=FALSE)
 
-n <- NROW(dat) 
+n <- NROW(patch) 
 J <- numeric(n)
-b.freq <- boot.array(boot.obj)
-theta.b <- boot.obj$t
+b.freq <- boot.array(boot.out)
+theta.b <- boot.out$t
 
 for (i in 1:n) {
   keep <- which(b.freq[ ,i] == 0)
@@ -261,8 +261,7 @@ for (i in 1:n) {
 }
 
 # the jackknife influence values
-J
-rbind((1:n), (n - 1) * (mean(J) - J))
+(n - 1) * (mean(J) - J)
 
 jack.after.boot(boot.out, useJ=TRUE, stinf=TRUE)
 
