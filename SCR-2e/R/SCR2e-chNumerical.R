@@ -3,7 +3,7 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       March 6, 2019                             ###
+###       January 2019                              ###
 ###                                                 ###
 ###       R code for Chapter 13                     ###
 ###       Introduction to Numerical Methods in R    ###
@@ -199,7 +199,7 @@
     y <- c(0.04304550, 0.50263474)
 
     mlogL <- function(theta=1) {
-        #minus log-likelihood of exp. density, rate 1/theta
+        #minus log-likelihood of exp. density, rate theta
         return( - (length(y) * log(theta) - theta * sum(y)))
     }
 
