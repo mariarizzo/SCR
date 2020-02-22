@@ -215,8 +215,8 @@ broom::tidy(summary(L))$std.error
 regstats <- function(dat, i) {
   #dat is a data frame (r, x, yhat)
   #r are the modified centered residuals, yhat are the fits
-  ystar <- dat$yhat[i] + dat$r[i]
-  xstar <- dat$x[i]
+  ystar <- dat$yhat + dat$r[i]
+  xstar <- dat$x
   Lnew <- lm(ystar ~ xstar)
   Lnew$coefficients
 }
