@@ -3,7 +3,7 @@
 ###       Maria L. Rizzo                            ###
 ###       Chapman & Hall/CRC The R Series           ###
 ###       ISBN 9781466553323 - CAT# K15269          ###
-###       March 6, 2019                             ###
+###       January 2019                              ###
 ###                                                 ###
 ###       R code for Chapter 15                     ###
 ###       Programming Topics                        ###
@@ -232,7 +232,7 @@
   slice(S400, 1:10) -> top
   top
 
-  Master %>% select(playerID, nameFirst, nameLast) -> m
+  People %>% select(playerID, nameFirst, nameLast) -> m
   top %>% inner_join(m) %>%
     select(nameFirst, nameLast, AVG)
 
