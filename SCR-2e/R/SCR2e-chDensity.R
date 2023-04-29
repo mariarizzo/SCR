@@ -5,7 +5,7 @@
 ###       ISBN 9781466553323 - CAT# K15269          ###
 ###       January 2019                              ###
 ###                                                 ###
-###       R code for Chapter 10                     ###
+###       R code for Chapter 12                     ###
 ###       Permutation Tests                         ###
 #######################################################
 
@@ -339,7 +339,7 @@
 
 
 
-### Code to generate data as shown in Table 10.1
+### Code to generate data as shown in Table 12.1
 
     N <- c(10, 20, 30, 50, 100, 200, 500, 1000, 5000, 10000)
     m <- length(N)
