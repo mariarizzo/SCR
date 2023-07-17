@@ -44,7 +44,7 @@ for (i in 1:n) {
   jack.se[i] <- sd(theta.b[keep])
 }
 
-print(boot.obj)  #for se_boot
+print(boot.out)  #for se_boot
 se.bar <- mean(jack.se)
 se.se <- sqrt((n-1) * mean((jack.se - se.bar)^2))
 print(paste("Jackknife-after-bootstrap est. se(se)=", se.se))
@@ -102,7 +102,7 @@ ggplot(data=ironslag, aes(chemical, magnetic)) +
 geom_point() + geom_smooth(method="lm") +
 ggtitle(cap)
 
-plot(L1, which=1:2)  #residual plots
+plot(L1, which=1:2, ask=FALSE)  #residual plots
 
 ### Example 9.4 (mammals data)
 
@@ -182,6 +182,8 @@ boot.ci(boot.out, index=2, type=c("norm","perc","basic","bca"))
 
 ### Example 9.7 (Resampling errors: mammals data)
 
+# Insert and run Example 9.4 code here
+
 m.resid <- rstandard(L, sd = 1)
 r <- m.resid - mean(m.resid)
 m <- 1000; n <- NROW(x)
@@ -215,8 +217,8 @@ broom::tidy(summary(L))$std.error
 regstats <- function(dat, i) {
   #dat is a data frame (r, x, yhat)
   #r are the modified centered residuals, yhat are the fits
-  ystar <- dat$yhat + dat$r[i]
-  xstar <- dat$x
+  ystar <- dat$yhat[i] + dat$r[i]
+  xstar <- dat$x[i]
   Lnew <- lm(ystar ~ xstar)
   Lnew$coefficients
 }
