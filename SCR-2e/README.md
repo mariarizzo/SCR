@@ -1,5 +1,9 @@
 ## Resources for "Statistical Computing with R, Second Edtion"
 
+This folder is now a new repository "SCR2e". 
+
+Go to https://github.com/mariarizzo/SCR2e for the files.
+
 Resources and files for "Statistical Computing with R 2nd edition" by Maria Rizzo, Chapman & Hall/CRC (2019)
 
 
