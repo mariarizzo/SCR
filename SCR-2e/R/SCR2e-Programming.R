@@ -31,7 +31,7 @@
       1:n
     )
     
-    mb
+    print(mb)
     autoplot(mb)  # display a violin plot
 
 ### Example 15.2 (Benchmarking methods to initialize a vector)
@@ -45,7 +45,7 @@
       as.ones = as.matrix(rep(1, n))
     )
     
-    mb2
+    print(mb2)
 
 ### Example 15.3 (Timings of two multivariate normal generators)
 
@@ -123,7 +123,8 @@
 
 ### Example 15.10 (RSiteSearch)
 
-  RSiteSearch("ggcorr")
+  if (interactive())
+    RSiteSearch("ggcorr")
 
 ### Example 15.11 (UseMethod)
 
@@ -139,8 +140,9 @@
 
 ### Example 15.13 (Object not found or not an exported object)
 
-  perc.ci
-  boot::perc.ci
+  try(perc.ci)
+  try(boot::perc.ci)
+  
   getAnywhere(perc.ci)
   args(boot:::perc.ci)
   body(boot:::perc.ci)
@@ -157,11 +159,14 @@
 
 ### Example 15.15 (.Primitive or .Internal)
 
-  pryr::show_c_source(.Primitive(cumsum(x)))
+  if (interactive())
+    pryr::show_c_source(.Primitive(cumsum(x)))
 
 ### Example 15.16 (.Call, .External, .C or .Fortran)
 
-  dist  #is implemented by a .Call to C_Cdist
+  #dist  is implemented by a .Call to C_Cdist
+
+  body(dist)
 
 ### Example 15.17 (A first Rcpp experiment)
 
@@ -193,6 +198,8 @@
 # Create the C++ source file "printme.cpp" by editing the template
 # in RStudio menu: File > New File > C++
 
+  library(Rcpp)
+  sourceCpp("..//examples-cpp//printme.cpp")
   x <- sample(1:5)
   print_me(x)
 
@@ -240,5 +247,3 @@
 
 # The source for this example is in R Markdown format
 # Open "Lahman.Rmd" in RStudio and knit to see report
-
-
