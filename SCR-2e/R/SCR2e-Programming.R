@@ -28,7 +28,7 @@
     mb <- microbenchmark(
       seq(1, n, 1),
       seq.int(1, n, 1),
-      1:n,
+      1:n
     )
     
     mb
