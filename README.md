@@ -6,6 +6,6 @@ Resources for the book "Statistical Computing with R" by Maria L. Rizzo
 
 This repository contains resouces for the first edition only. 
 
-Resources for the second edition are here:  https://github/mariarizzo/SCR2e
+Resources for the second edition are here:  repo: mariarizzo/SCR2e
 
 
